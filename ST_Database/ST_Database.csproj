@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{288207C4-70C7-4EE7-9FA8-924A4429D1B4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_Database</RootNamespace>
+    <AssemblyName>ST_Database</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SAPBusinessOneSDK, Version=1.1.0.1, Culture=neutral, PublicKeyToken=c7c3cb60e45d119f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\sap\SAP Business One\SAPBusinessOneSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ST_FieldsAttribute.cs" />
+    <Compile Include="Attributes\ST_TablesAttribute.cs" />
+    <Compile Include="Attributes\ST_UdoAttribute.cs" />
+    <Compile Include="Attributes\ST_UdoChildAttribute.cs" />
+    <Compile Include="Attributes\ST_ValidValuesAttribute.cs" />
+    <Compile Include="Bases\RelationalReader.cs" />
+    <Compile Include="Bases\ST_TableBase.cs" />
+    <Compile Include="DB.cs" />
+    <Compile Include="DefaultNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\UserFieldsMDExtensions.cs" />
+    <Compile Include="FieldsProcess.cs" />
+    <Compile Include="Models\CUFDModel.cs" />
+    <Compile Include="Models\FieldModel.cs" />
+    <Compile Include="Models\OUTBModel.cs" />
+    <Compile Include="Models\TableModel.cs" />
+    <Compile Include="Models\UdoChildsModel.cs" />
+    <Compile Include="Models\UdoModel.cs" />
+    <Compile Include="Models\UFD1Model.cs" />
+    <Compile Include="Models\ValidValuesModel.cs" />
+    <Compile Include="Process.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\hana.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hana.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\QuerySelect.cs" />
+    <Compile Include="Queries\sql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sql.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TableProcess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Queries\hana\cufdList.sql" />
+    <Content Include="Queries\hana\getFieldID.sql" />
+    <Content Include="Queries\hana\outbList.sql" />
+    <Content Include="Queries\hana\udoList.sql" />
+    <Content Include="Queries\hana\ufd1List.sql" />
+    <Content Include="Queries\sql\cufdList.sql" />
+    <Content Include="Queries\sql\getFieldID.sql" />
+    <Content Include="Queries\sql\outbList.sql" />
+    <Content Include="Queries\sql\udoList.sql" />
+    <Content Include="Queries\sql\ufd1List.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\STBR_Framework\STBR_Framework.csproj">
+      <Project>{3edf5955-9e86-449f-a998-07160887d34f}</Project>
+      <Name>STBR_Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ST_Extensions\ST_Extensions.csproj">
+      <Project>{a521a1ad-c1b0-4d46-98ce-e68bc1047539}</Project>
+      <Name>ST_Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DefaultNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Queries\hana.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hana.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Queries\sql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
