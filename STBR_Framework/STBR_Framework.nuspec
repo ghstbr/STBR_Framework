@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
-  <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>vanderlei szarblewski</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <icon>Images\logo.png</icon> 
-    <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl>
-    <description>Framework para ajudar nos desenvolvimentos</description>
-    <releaseNotes>Primeira versão simplificada.</releaseNotes>
-    <copyright>$copyright$</copyright>
-    <tags>SAP SAPB1 SAPBusinessOne</tags>
-  </metadata>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>vanderlei szarblewski</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">MIT</license>
+		<icon>Images\logo.png</icon>
+		<projectUrl>https://github.com/ghstbr/STBR_Framework</projectUrl>
+		<description>Framework para ajudar nos desenvolvimentos</description>
+		<releaseNotes>Primeira versão simplificada.</releaseNotes>
+		<copyright>$copyright$</copyright>
+		<tags>SAP SAPB1 SAPBusinessOne</tags>
+		<readme>README.md</readme>
+	</metadata>
 	<files>
 		<file src=".\Images\logo.png" target="Images\" />
 	</files>

@@ -9,12 +9,13 @@
 		<license type="expression">MIT</license>
 		<icon>Images\logo.png</icon>
 		<projectUrl>https://github.com/ghstbr/STBR_Framework</projectUrl>
-		<description>Extensoes para STBR_Framework</description>
+		<description>Database para STBR_Framework</description>
 		<releaseNotes>Primeira versao simplificada</releaseNotes>
 		<copyright>$copyright$</copyright>
 		<tags>SAP SAPB1 SAPBusinessOne</tags>
 		<dependencies>
 			<dependency id="STBR_Framework" version="1.0.0.3" />
+			<dependency id="ST_Extensions" version="1.1.0.3" />
 		</dependencies>
 		<readme>README.md</readme>
 	</metadata>
