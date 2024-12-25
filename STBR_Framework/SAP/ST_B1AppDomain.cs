@@ -1,4 +1,5 @@
-﻿using STBR_Framework.Attributes;
+﻿using SAPbouiCOM.Framework;
+using STBR_Framework.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,10 @@ namespace STBR_Framework
     public sealed class ST_B1AppDomain
     {
         //dicionarios de classes com atributos controlados
+        internal static Dictionary<string, ST_FormBase> DictionaryFormEvent = new Dictionary<string, ST_FormBase>();
         internal static Dictionary<string, ST_MenuBase> DictionaryMenuEvent = new Dictionary<string, ST_MenuBase>();
         internal static Dictionary<string, string> DictionaryMenuDefault = new Dictionary<string, string>();
+        
 
         static private ST_B1AppDomain objAppDomainClass = null;
         static private SAPbouiCOM.Application objApplication = null;
@@ -88,6 +91,16 @@ namespace STBR_Framework
             }
         }
 
+        internal static void RegisterFormByType(string formUid, ST_FormBase formBase)
+        {
+
+            if (!string.IsNullOrEmpty(formUid))
+            {
+                DictionaryFormEvent.Add(formUid, formBase);
+            }
+
+        }
+
         internal static void CreateInstanceClass(Type[] nameSpace)
         {
             Assembly asm = Assembly.GetExecutingAssembly();
@@ -100,7 +113,7 @@ namespace STBR_Framework
                     {
                         foreach (object obj2 in type.GetCustomAttributes(false))
                         {
-                            if (obj2 is ST_MenuAttribute)
+                            if (obj2 is ST_MenuAttribute || obj2 is ST_FormAttribute)
                             {
                                 Activator.CreateInstance(type);
                             }

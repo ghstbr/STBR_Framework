@@ -50,8 +50,8 @@ namespace ST_Database
             ProgressBar pbTablesClass = ST_B1AppDomain.Application.StatusBar.CreateProgressBar("Aguarde... Atualizando Tabelas Classes", Process.DictionaryTablesFields.Count, false);
             foreach (KeyValuePair<object, TableModel> table in Process.DictionaryTablesFields.Where(x => x.Value.TableType == TableType.User))
             {
-                pbTables.Value++;
-                pbTables.Text = table.Value.Name;
+                pbTablesClass.Value++;
+                pbTablesClass.Text = table.Value.Name;
                 if (userTablesList.Where(x => x.TableName == table.Value.Name).Count() <= 0)
                 {
                     AddTable(table.Value);
@@ -113,12 +113,13 @@ namespace ST_Database
                 objUserTablesMD = (UserTablesMD)ST_B1AppDomain.Company.GetBusinessObject(BoObjectTypes.oUserTables);
 
                 //seta propriedades
-                string name = table.Name.ST_GetNameTable();
+                //string name = table.Name.ST_GetNameTable();
+                string name = table.Name;
                 string description = table.Description;
 
 
-                if (!description.ToUpper().StartsWith("ST-"))
-                    description = DefaultNames.Prefix + "-" + table.Description;
+                //if (!description.ToUpper().StartsWith("ST-"))
+                //    description = DefaultNames.Prefix + "-" + table.Description;
 
                 objUserTablesMD.TableName = name.Length > 20 ? name.Substring(0, 20).ToUpper() : name.ToUpper();
                 objUserTablesMD.TableDescription = description.Length > 30
@@ -155,7 +156,8 @@ namespace ST_Database
             {
                 //instancia objeto para atualizar tabela
                 objUserTablesMD = (UserTablesMD)ST_B1AppDomain.Company.GetBusinessObject(BoObjectTypes.oUserTables);
-                string name = table.Name.ST_GetNameTable();
+                //string name = table.Name.ST_GetNameTable();
+                string name = table.Name;
 
 
 
@@ -164,8 +166,8 @@ namespace ST_Database
 
                     string description = table.Description;
 
-                    if (!description.ToUpper().StartsWith("ST-"))
-                        description = DefaultNames.Prefix + "-" + table.Description;
+                    //if (!description.ToUpper().StartsWith("ST-"))
+                    //    description = DefaultNames.Prefix + "-" + table.Description;
 
                     objUserTablesMD.TableDescription = description.Length > 30
                                                             ? description.Substring(0, 30).ToUpper()

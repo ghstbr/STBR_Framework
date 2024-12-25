@@ -1,1 +1,1 @@
-﻿select fieldid from CUFD where AliasID = '{0}' and TableID = '{1}'
+﻿select "FieldID" from CUFD where "AliasID" = '{0}' and "TableID" = '{1}'

@@ -1,18 +1,18 @@
-﻿SELECT TableID
-      , FieldID
-      , AliasID
-      , Descr
-      , TypeID
-      , EditType
-      , SizeID
-      , EditSize
-      , Dflt
-      , NotNull
-      , IndexID
-      , RTable
-      , RField
-      , Action
-      , Sys
-      , DfltDate
-      , RelUDO
+﻿SELECT  "TableID"
+      , "FieldID"
+      , "AliasID"
+      , "Descr"
+      , "TypeID"
+      , "EditType"
+      , "SizeID"
+      , "EditSize"
+      , "Dflt"
+      , "NotNull"
+      , "IndexID"
+      , "RTable"
+      , "RField"
+      , "Action"
+      , "Sys"
+      , "DfltDate"
+      , "RelUDO"
   FROM CUFD

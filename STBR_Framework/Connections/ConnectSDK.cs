@@ -59,7 +59,7 @@ namespace STBR_Framework.Connections
             new Events();
             if (_types != null)
                 ST_B1AppDomain.CreateInstanceClass(_types);
-
+                        
             
             ST_B1AppDomain.Application.SetStatusBarMessage("Conexão estabelecida com sucesso!", SAPbouiCOM.BoMessageTime.bmt_Short, false);
         }

@@ -1,10 +1,10 @@
 ﻿select 
-       TableName
-       ,Descr
-       ,TblNum
-       ,ObjectType
-       ,UsedInObj
-       ,LogTable
-       ,Archivable
-       ,ArchivDate 
+       "TableName"
+       ,"Descr"
+       ,"TblNum"
+       ,"ObjectType"
+       ,"UsedInObj"
+       ,"LogTable"
+       ,"Archivable"
+       ,"ArchivDate" 
 from OUTB

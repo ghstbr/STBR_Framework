@@ -69,6 +69,47 @@ namespace ST_Database
 
             #endregion
 
+            #region CAMPOS VIA CLASSE
+
+            userTablesList = userTables.Tables();
+            qtyFields = Process.DictionaryTablesFields.Sum(x => x.Value.Fields.Count());
+
+            ProgressBar pbFieldsC = ST_B1AppDomain.Application.StatusBar.CreateProgressBar("Aguarde... Atualizando Campos de usuários", qtyFields, false);
+
+            foreach (KeyValuePair<object, TableModel> table in Process.DictionaryTablesFields)
+            {
+                List<CUFDModel> userFieldList = table.Value.TableType == TableType.System ?
+                    userFields.Fields(table.Value.Name) :
+                    userFields.Fields("@" + table.Value.Name);
+
+                foreach (FieldModel field in table.Value.Fields)
+                {
+                    pbFieldsC.Value++;
+                    pbFieldsC.Text = table.Value.Name + " - " + field.Name;
+
+                    if (userFieldList.Count(p => p.AliasID.ToUpper() == field.Name.ToUpper() &&
+                                           p.TableID.ToUpper() == (table.Value.TableType == TableType.System ?
+                                                                        table.Value.Name.ToUpper() : "@" + table.Value.Name.ToUpper())) <= 0)
+                    {
+                        AddField(field, table.Value);
+                    }
+                    else
+                    {
+                        if (VerifyField(field, table.Value, userFieldList.Where(p => p.AliasID.ToUpper() == field.Name.ToUpper() &&
+                                                                   p.TableID.ToUpper() == (table.Value.TableType == TableType.System ?
+                                                                                                 table.Value.Name.ToUpper() : "@" + table.Value.Name.ToUpper())).SingleOrDefault()))
+                        {
+                            UpdateField(field, table.Value);
+                        }
+                    }
+                }
+            }
+
+            pbFieldsC.Stop();
+            pbFieldsC.ST_ClearMemory();
+
+            #endregion
+
         }
 
         private static bool VerifyField(FieldModel field, TableModel table, CUFDModel cUFD)
@@ -204,7 +245,7 @@ namespace ST_Database
         {
             int intRetCode = -1;
             SAPbobsCOM.UserFieldsMD objUserFieldsMD = null;
-            table.Name = table.Name.ST_GetNameTable();
+            //table.Name = table.TableType == TableType.User ? table.Name.ST_GetNameTable() : table.Name;
 
             //instancia objeto para criar campo
             objUserFieldsMD = (UserFieldsMD)ST_B1AppDomain.Company.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oUserFields);
