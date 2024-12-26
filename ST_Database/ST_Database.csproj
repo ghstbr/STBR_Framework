@@ -106,10 +106,6 @@
       <Project>{3edf5955-9e86-449f-a998-07160887d34f}</Project>
       <Name>STBR_Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ST_Extensions\ST_Extensions.csproj">
-      <Project>{a521a1ad-c1b0-4d46-98ce-e68bc1047539}</Project>
-      <Name>ST_Extensions</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DefaultNames.resx">

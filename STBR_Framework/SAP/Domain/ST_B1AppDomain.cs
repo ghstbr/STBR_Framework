@@ -1,5 +1,6 @@
 ﻿using SAPbouiCOM.Framework;
 using STBR_Framework.Attributes;
+using STBR_Framework.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,15 @@ namespace STBR_Framework
         internal static Dictionary<string, ST_FormBase> DictionaryFormEvent = new Dictionary<string, ST_FormBase>();
         internal static Dictionary<string, ST_MenuBase> DictionaryMenuEvent = new Dictionary<string, ST_MenuBase>();
         internal static Dictionary<string, string> DictionaryMenuDefault = new Dictionary<string, string>();
-        
+        internal static Dictionary<object, TableModel> DictionaryTablesFields = new Dictionary<object, TableModel>();
+        internal static Dictionary<object, UdoModel> DictionaryUdos = new Dictionary<object, UdoModel>();
+        internal static Dictionary<object, UdoChildsModel> DictionaryUdosChilds = new Dictionary<object, UdoChildsModel>();
 
         static private ST_B1AppDomain objAppDomainClass = null;
         static private SAPbouiCOM.Application objApplication = null;
         static private SAPbobsCOM.Company objCompany = null;
         static private string strConnectionString = "";
+        static internal bool EventsView = false;
 
         #region Publico
 
@@ -86,20 +90,37 @@ namespace STBR_Framework
         internal static void RegisterMenuByType(string menuUid, ST_MenuBase menuBase)
         {
             if (!string.IsNullOrEmpty(menuUid))
-            {
                 DictionaryMenuEvent.Add(menuUid, menuBase);
-            }
         }
+
 
         internal static void RegisterFormByType(string formUid, ST_FormBase formBase)
         {
-
             if (!string.IsNullOrEmpty(formUid))
-            {
                 DictionaryFormEvent.Add(formUid, formBase);
-            }
-
         }
+
+        internal static void RegisterTable(object obj, TableModel tables)
+        {
+            if (obj != null)
+                DictionaryTablesFields.Add(obj, tables);
+        }
+
+        internal static void RegisterUdo(object obj, UdoModel udo)
+        {
+            if (obj != null)
+                DictionaryUdos.Add(obj, udo);
+        }
+
+        internal static void RegisterUdoChild(object obj, UdoChildsModel udo)
+        {
+            if (obj != null)
+                DictionaryUdosChilds.Add(obj, udo);
+        }
+
+
+
+
 
         internal static void CreateInstanceClass(Type[] nameSpace)
         {
@@ -113,16 +134,23 @@ namespace STBR_Framework
                     {
                         foreach (object obj2 in type.GetCustomAttributes(false))
                         {
-                            if (obj2 is ST_MenuAttribute || obj2 is ST_FormAttribute)
-                            {
+                            if (obj2 is ST_MenuAttribute)
                                 Activator.CreateInstance(type);
-                            }
+
+                            if (obj2 is ST_FormAttribute)
+                                Activator.CreateInstance(type);
+
+                            if (obj2 is ST_TablesAttribute)
+                                Activator.CreateInstance(type);
+
                         }
 
                     }
                     catch { }
 
                 }
+                else if (type.Name == "TablesAddon")
+                    Activator.CreateInstance(type);
 
             }
 

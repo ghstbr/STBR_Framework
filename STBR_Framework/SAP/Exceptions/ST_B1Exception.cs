@@ -108,6 +108,43 @@ namespace STBR_Framework
         }
 
         /// <summary>
+        /// Salva a mensagem do codigo de erro do SAP passado
+        /// </summary>
+        /// <param name="codErrorSap">codigo de erro do SAP</param>
+        /// <param name="complementMessage">mensagem complementar</param>
+        static public void throwException(int codErrorSap, string complementMessage)
+        {
+            string strErrorMessage = "";
+
+            if (objException == null)
+
+                objException = new ST_B1Exception();
+
+            try
+            {
+
+                if (codErrorSap != 0)
+                {
+                    string mensagem = "";
+                    ST_B1AppDomain.Company.GetLastError(out codErrorSap, out mensagem);
+                    strErrorMessage = codErrorSap + " :: " + mensagem;
+
+                    writeLog(strErrorMessage + " :: " + complementMessage);
+                }
+
+
+
+            }
+            catch (Exception objEx)
+            {
+
+                writeLog("ExceptionClass:" + ": " + objEx.Message);
+            }
+
+
+        }
+
+        /// <summary>
         /// Salva no arquivo de log a mensagem passada
         /// </summary>
         /// <param name="strMessage">mensagem a ser salva</param>

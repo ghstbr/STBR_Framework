@@ -1,0 +1,1 @@
+﻿SELECT "FieldID", "AliasID" FROM CUFD WHERE "TableID" = '{0}'

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SAPBusinessOneSDK, Version=1.1.0.1, Culture=neutral, PublicKeyToken=c7c3cb60e45d119f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\sap\SAP Business One\SAPBusinessOneSDK.dll</HintPath>
@@ -46,30 +49,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\ST_FormAttribute.cs" />
-    <Compile Include="Attributes\ST_MenuAttribute.cs" />
+    <Compile Include=".Net\Extensions\CollectionExtensions.cs" />
+    <Compile Include=".Net\Extensions\StringExtensions.cs" />
+    <Compile Include=".Net\Extensions\WindowWrapper.cs" />
+    <Compile Include="InfosAddon.cs" />
+    <Compile Include="InternalSystem\Forms\FormsFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormsFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="InternalSystem\Forms\frmBaseDados.cs" />
+    <Compile Include="InternalSystem\Forms\frmInfo.cs" />
+    <Compile Include="InternalSystem\Forms\frmNewField.cs" />
+    <Compile Include="InternalSystem\Forms\frmNewTable.cs" />
+    <Compile Include="InternalSystem\Forms\frmTableFields.cs" />
+    <Compile Include="InternalSystem\Forms\frmUdo.cs" />
+    <Compile Include="InternalSystem\Forms\frmWeb.cs" />
+    <Compile Include="InternalSystem\Menu\MenuFramework.cs" />
+    <Compile Include="InternalSystem\Services\frmBaseDados_service.cs" />
+    <Compile Include="InternalSystem\Services\frmTableFields_service.cs" />
+    <Compile Include="InternalSystem\Services\InitForms_service.cs" />
+    <Compile Include="Models\CUFDModel.cs" />
+    <Compile Include="Models\FieldModel.cs" />
+    <Compile Include="Models\InfoModel.cs" />
+    <Compile Include="Models\OUTBModel.cs" />
+    <Compile Include="Models\TableModel.cs" />
+    <Compile Include="Models\UdoChildsModel.cs" />
+    <Compile Include="Models\UdoModel.cs" />
+    <Compile Include="Models\UFD1Model.cs" />
+    <Compile Include="Models\ValidValuesModel.cs" />
+    <Compile Include="Queries\hana.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>hana.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\QuerySelect.cs" />
+    <Compile Include="Queries\sql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sql.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RelationalReader.cs" />
+    <Compile Include="SAP\Attributes\ST_FieldsAttribute.cs" />
+    <Compile Include="SAP\Attributes\ST_FormAttribute.cs" />
+    <Compile Include="SAP\Attributes\ST_MenuAttribute.cs" />
     <Compile Include="Connections\ConnectDI.cs" />
     <Compile Include="Connections\ConnectSDK.cs" />
     <Compile Include="Connections\ConnectUI.cs" />
     <Compile Include="Enums\ObjectsType.cs" />
     <Compile Include="Enums\TableType.cs" />
     <Compile Include="Events.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="FormsTemplates\frmTemplate.b1f.cs">
       <DependentUpon>frmTemplate.b1f</DependentUpon>
     </Compile>
     <Compile Include="GlobalEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SAP\ST_B1AppDomain.cs" />
-    <Compile Include="SAP\ST_B1Exception.cs" />
-    <Compile Include="SAP\ST_FormBase.cs" />
-    <Compile Include="SAP\ST_MenuBase.cs" />
-    <Compile Include="Utils\Mensagem.cs" />
+    <Compile Include="SAP\Attributes\ST_TablesAttribute.cs" />
+    <Compile Include="SAP\Attributes\ST_UdoAttribute.cs" />
+    <Compile Include="SAP\Attributes\ST_UdoChildAttribute.cs" />
+    <Compile Include="SAP\Attributes\ST_ValidValuesAttribute.cs" />
+    <Compile Include="SAP\Base\ST_FormBase.cs" />
+    <Compile Include="SAP\Base\ST_MenuBase.cs" />
+    <Compile Include="SAP\Base\ST_TableBase.cs" />
+    <Compile Include="SAP\Database\DB.cs" />
+    <Compile Include="SAP\Extensions\ApplicationExtensions.cs" />
+    <Compile Include="SAP\Extensions\ButtonComboExtensions.cs" />
+    <Compile Include="SAP\Extensions\ComboBoxExtensions.cs" />
+    <Compile Include="SAP\Extensions\FormExtensions.cs" />
+    <Compile Include="SAP\Extensions\GridExtensions.cs" />
+    <Compile Include="SAP\Extensions\MenusExtensions.cs" />
+    <Compile Include="SAP\Extensions\ObjectExtensions.cs" />
+    <Compile Include="SAP\Extensions\RecordsetExtensions.cs" />
+    <Compile Include="SAP\Extensions\UserFieldsMDExtensions.cs" />
+    <Compile Include="SAP\Services\Fields_service.cs" />
+    <Compile Include="SAP\Services\InfosAddon_service.cs" />
+    <Compile Include="SAP\Domain\ST_B1AppDomain.cs" />
+    <Compile Include="SAP\Exceptions\ST_B1Exception.cs" />
+    <Compile Include="SAP\Services\Tables_service.cs" />
+    <Compile Include="SAP\Services\Udos_service.cs" />
+    <Compile Include="SAP\Utils\ST_Forms.cs" />
+    <Compile Include="SAP\Utils\ST_Mensagens.cs" />
+    <Compile Include="SAP\Utils\ST_Menus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FormsTemplates\frmTemplate.b1f">
       <FormCategory>UserForm</FormCategory>
     </None>
+    <None Include="packages.config" />
     <None Include="README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -81,6 +147,38 @@
     <Content Include="Images\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="InternalSystem\Forms\frmBaseDados.srf" />
+    <Content Include="InternalSystem\Forms\frmInfo.srf" />
+    <Content Include="InternalSystem\Forms\frmNewField.srf" />
+    <Content Include="InternalSystem\Forms\frmNewTable.srf" />
+    <Content Include="InternalSystem\Forms\frmTableFields.srf" />
+    <Content Include="InternalSystem\Forms\frmUdo.srf" />
+    <Content Include="InternalSystem\Forms\frmWeb.srf" />
+    <Content Include="Queries\hana\cufdList.sql" />
+    <Content Include="Queries\hana\getFieldID.sql" />
+    <Content Include="Queries\hana\getFieldsTable.sql" />
+    <Content Include="Queries\hana\outbList.sql" />
+    <Content Include="Queries\hana\udoList.sql" />
+    <Content Include="Queries\hana\ufd1List.sql" />
+    <Content Include="Queries\sql\cufdList.sql" />
+    <Content Include="Queries\sql\getFieldID.sql" />
+    <Content Include="Queries\sql\outbList.sql" />
+    <Content Include="Queries\sql\udoList.sql" />
+    <Content Include="Queries\sql\ufd1List.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InternalSystem\Forms\FormsFiles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormsFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Queries\hana.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>hana.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Queries\sql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

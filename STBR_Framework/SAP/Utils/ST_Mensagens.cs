@@ -1,6 +1,6 @@
-﻿namespace STBR_Framework
+﻿namespace STBR_Framework.Utils
 {
-    public static class Mensagem
+    public static class ST_Mensagens
     {
         public static void Box(string mensagem)
         {
@@ -20,12 +20,16 @@
         public static void StatusBarSuccess(string mensagem)
         {
             ST_B1AppDomain.Application.StatusBar.SetText(mensagem, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
+            //VZ_B1AppDomain.Application.StatusBar.SetSystemMessage(mensagem, 
+            //    SAPbouiCOM.BoMessageTime.bmt_Short, 
+            //    SAPbouiCOM.BoStatusBarMessageType.smt_Success, 
+            //    MessageID: 999, 
+            //    Context: "testando contexto", HelpContent: "testando help");
         }
 
         public static void StatusBarWarning(string mensagem)
         {
             ST_B1AppDomain.Application.StatusBar.SetText(mensagem, SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Warning);
         }
-
     }
 }

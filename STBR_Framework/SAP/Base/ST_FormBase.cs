@@ -1,8 +1,7 @@
-﻿using SAPbouiCOM.Framework;
-using SAPbouiCOM;
+﻿using SAPbouiCOM;
 using System.Collections.Generic;
-using STBR_Framework.Attributes;
 using System.Linq;
+using STBR_Framework.Attributes;
 
 namespace STBR_Framework
 {
@@ -10,8 +9,7 @@ namespace STBR_Framework
     {
         private readonly List<string> formUid;
         public Form oForm;
-        //public List<DataBindModel> DataBind;
-        //public List<GridFormaterModel> GridFormater;
+        public Dictionary<string, object> formParameters = new Dictionary<string, object>();
 
 
         protected Item GetItem(string uid)
@@ -20,14 +18,13 @@ namespace STBR_Framework
             return this.oForm.Items.Item(uid);
         }
 
-
-        private void CapturaFormulario()
+        internal void CapturaFormulario()
         {
-            if (formUid != null)
+            try
             {
                 oForm = ST_B1AppDomain.Application.Forms.Item(this.formUid);
             }
-            else
+            catch
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
             }
@@ -37,8 +34,7 @@ namespace STBR_Framework
         protected ST_FormBase()
         {
             formUid = new List<string>();
-            //DataBind = new List<DataBindModel>();
-            //GridFormater = new List<GridFormaterModel>();
+
             ST_FormAttribute attribute = null;
             int index = 0;
             foreach (object obj2 in base.GetType().GetCustomAttributes(false))
@@ -79,6 +75,7 @@ namespace STBR_Framework
 
         }
 
+        public virtual void OnCustomInitialize() { }
 
 
         private void OnInitializeFormEvents()
@@ -253,7 +250,7 @@ namespace STBR_Framework
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
-                ChooseFromList_After(formUID, ref pVal, ref bubbleEvent);
+                ChooseFromLiVZ_After(formUID, ref pVal, ref bubbleEvent);
             }
         }
         private void ChooseFromListFilterBefore(string formUID, ref ItemEvent pVal, ref bool bubbleEvent)
@@ -261,11 +258,11 @@ namespace STBR_Framework
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
-                ChooseFromList_Before(formUID, ref pVal, ref bubbleEvent);
+                ChooseFromLiVZ_Before(formUID, ref pVal, ref bubbleEvent);
             }
         }
-        public virtual void ChooseFromList_After(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
-        public virtual void ChooseFromList_Before(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
+        public virtual void ChooseFromLiVZ_After(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
+        public virtual void ChooseFromLiVZ_Before(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
 
         private void ComboSelectFilterAfter(string formUID, ref ItemEvent pVal, ref bool bubbleEvent)
         {
@@ -442,7 +439,7 @@ namespace STBR_Framework
         {
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
-                //oForm = ST_B1AppDomain.Application.Forms.Item(formUID);
+                //oForm = VZ_B1AppDomain.Application.Forms.Item(formUID);
                 Form_Load_After(formUID, ref pVal, ref bubbleEvent);
             }
         }
@@ -450,7 +447,7 @@ namespace STBR_Framework
         {
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
-                //oForm = ST_B1AppDomain.Application.Forms.Item(formUID);
+                //oForm = VZ_B1AppDomain.Application.Forms.Item(formUID);
                 Form_Load_Before(formUID, ref pVal, ref bubbleEvent);
             }
         }
