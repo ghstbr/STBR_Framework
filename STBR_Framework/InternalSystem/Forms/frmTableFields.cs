@@ -9,7 +9,7 @@ using RE = STBR_Framework.InternalSystem.Forms.FormsFiles;
 
 namespace STBR_Framework.Default.forms
 {
-    [ST_Form("frmVorazTables", "Tabelas de usuários")]
+    [ST_Form("frmTableFields", "Tabelas de usuários")]
     internal class frmTableFields : ST_FormBase
     {
         frmTableFields_service _service = new frmTableFields_service();

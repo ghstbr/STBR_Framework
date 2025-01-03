@@ -35,14 +35,14 @@ namespace STBR_Framework.SAP.Services
         }
 
 
-        internal void ProcessFieldsJson()
+        internal void ProcessFieldsJson(bool autoCreate = false)
         {
             try
             {
                 List<TableModel> tablesJson = infoService.ReadDataJson();
                 foreach (TableModel table in tablesJson)
                 {
-                    if (table.AutoCreate)
+                    if (table.AutoCreate || autoCreate)
                     {
                         List<FieldModel> fields = table.Fields;
                         string tableName = table.TableType == TableType.User ? "@" + table.Name.ST_GetNameTable() : table.Name.ST_GetNameTable();

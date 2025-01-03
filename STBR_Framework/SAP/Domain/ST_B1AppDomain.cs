@@ -16,7 +16,8 @@ namespace STBR_Framework
         //dicionarios de classes com atributos controlados
         internal static Dictionary<string, ST_FormBase> DictionaryFormEvent = new Dictionary<string, ST_FormBase>();
         internal static Dictionary<string, ST_MenuBase> DictionaryMenuEvent = new Dictionary<string, ST_MenuBase>();
-        internal static Dictionary<string, string> DictionaryMenuDefault = new Dictionary<string, string>();
+        internal static Dictionary<string, ST_MenuBaseInternal> DictionaryInternalMenuEvent = new Dictionary<string, ST_MenuBaseInternal>();
+        //internal static Dictionary<string, string> DictionaryMenuDefault = new Dictionary<string, string>();
         internal static Dictionary<object, TableModel> DictionaryTablesFields = new Dictionary<object, TableModel>();
         internal static Dictionary<object, UdoModel> DictionaryUdos = new Dictionary<object, UdoModel>();
         internal static Dictionary<object, UdoChildsModel> DictionaryUdosChilds = new Dictionary<object, UdoChildsModel>();
@@ -80,7 +81,9 @@ namespace STBR_Framework
 
             }
         }
-
+        static public string Port { get; set; }
+        static public string UserDB { get; set; }
+        static public string PasswdDB { get; set; }
 
         #endregion
 
@@ -93,6 +96,11 @@ namespace STBR_Framework
                 DictionaryMenuEvent.Add(menuUid, menuBase);
         }
 
+        internal static void RegisterMenuInternalByType(string menuUid, ST_MenuBaseInternal menuBase)
+        {
+            if (!string.IsNullOrEmpty(menuUid))
+                DictionaryInternalMenuEvent.Add(menuUid, menuBase);
+        }
 
         internal static void RegisterFormByType(string formUid, ST_FormBase formBase)
         {
@@ -132,18 +140,15 @@ namespace STBR_Framework
                 {
                     try
                     {
-                        foreach (object obj2 in type.GetCustomAttributes(false))
-                        {
-                            if (obj2 is ST_MenuAttribute)
-                                Activator.CreateInstance(type);
+                        //verifica se a classe possui o atributo de formulario
+                        if (type.CustomAttributes.Where(e => e.AttributeType == typeof(ST_FormAttribute)).Count() > 0)
+                            Activator.CreateInstance(type);
 
-                            if (obj2 is ST_FormAttribute)
-                                Activator.CreateInstance(type);
+                        //verifica se a classe possui o atributo de menu
+                        if (type.CustomAttributes.Where(e => e.AttributeType == typeof(ST_MenuAttribute)).Count() > 0)
+                            Activator.CreateInstance(type);
 
-                            if (obj2 is ST_TablesAttribute)
-                                Activator.CreateInstance(type);
-
-                        }
+                        
 
                     }
                     catch { }

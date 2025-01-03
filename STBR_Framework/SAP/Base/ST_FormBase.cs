@@ -10,7 +10,7 @@ namespace STBR_Framework
         private readonly List<string> formUid;
         public Form oForm;
         public Dictionary<string, object> formParameters = new Dictionary<string, object>();
-
+        public static string uidForm;
 
         protected Item GetItem(string uid)
         {
@@ -18,15 +18,17 @@ namespace STBR_Framework
             return this.oForm.Items.Item(uid);
         }
 
-        internal void CapturaFormulario()
+        public void CapturaFormulario()
         {
             try
             {
                 oForm = ST_B1AppDomain.Application.Forms.Item(this.formUid);
+                uidForm = oForm.UniqueID;
             }
             catch
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
+                uidForm = oForm.UniqueID;
             }
         }
 
@@ -250,7 +252,7 @@ namespace STBR_Framework
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
-                ChooseFromLiVZ_After(formUID, ref pVal, ref bubbleEvent);
+                ChooseFromList_After(formUID, ref pVal, ref bubbleEvent);
             }
         }
         private void ChooseFromListFilterBefore(string formUID, ref ItemEvent pVal, ref bool bubbleEvent)
@@ -258,11 +260,11 @@ namespace STBR_Framework
             if (this.formUid.Contains(pVal.FormTypeEx))
             {
                 oForm = ST_B1AppDomain.Application.Forms.ActiveForm;
-                ChooseFromLiVZ_Before(formUID, ref pVal, ref bubbleEvent);
+                ChooseFromList_Before(formUID, ref pVal, ref bubbleEvent);
             }
         }
-        public virtual void ChooseFromLiVZ_After(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
-        public virtual void ChooseFromLiVZ_Before(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
+        public virtual void ChooseFromList_After(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
+        public virtual void ChooseFromList_Before(string formUID, ref ItemEvent pVal, ref bool bubbleEvent) { }
 
         private void ComboSelectFilterAfter(string formUID, ref ItemEvent pVal, ref bool bubbleEvent)
         {

@@ -11,12 +11,23 @@ namespace STBR_Framework.Connections
         public static Application _application;
         private static Type[] _types;
         private static bool _autoCreateDB;
+        private static string _userDB;
+        private static string _passwdDB;
+        private static string _port;
 
-        public void Connect(string[] args = null, Type[] types = null, bool autoCreateDB = true)
+        public void Connect(string[] args = null, 
+            Type[] types = null, 
+            bool autoCreateDB = true,
+            string userDB = "",
+            string passwdDB = "",
+            string port = "")
         {
             try
             {
-               
+                _autoCreateDB = autoCreateDB;
+                _userDB = userDB;
+                _passwdDB = passwdDB;
+                _port = port;
                 _types = types;
 
                 _application.AfterInitialized += ApplicationRun;
@@ -55,6 +66,9 @@ namespace STBR_Framework.Connections
             ST_B1AppDomain.Application = Application.SBO_Application;
             ST_B1AppDomain.Company = (SAPbobsCOM.Company)Application.SBO_Application.Company.GetDICompany();
             ST_B1AppDomain.Connected = true;
+            ST_B1AppDomain.Port = _port;
+            ST_B1AppDomain.UserDB = _userDB;
+            ST_B1AppDomain.PasswdDB = _passwdDB;
             new Events();
             if (_types != null)
                 ST_B1AppDomain.CreateInstanceClass(_types);
@@ -64,7 +78,7 @@ namespace STBR_Framework.Connections
             if (_autoCreateDB)
                 new DB();
 
-            ST_B1AppDomain.Application.SetStatusBarMessage("Conexão estabelecida com sucesso!", SAPbouiCOM.BoMessageTime.bmt_Short, false);
+            ST_B1AppDomain.Application.SetStatusBarMessage("Conexão estabelecida com sucesso! " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), SAPbouiCOM.BoMessageTime.bmt_Short, false);
         }
 
 

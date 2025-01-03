@@ -133,7 +133,7 @@ namespace STBR_Framework.SAP.Services
             return userTables;
         }
 
-        internal void ProcessTableJson()
+        internal void ProcessTableJson(bool autoCreate = false)
         {
             ST_Mensagens.StatusBarWarning("Atualizando tabelas por Json... :: " + DateTime.Now.ToString("HH:mm:ss"));
             List<TableModel> tablesJson = infoService.ReadDataJson();
@@ -147,7 +147,7 @@ namespace STBR_Framework.SAP.Services
                 foreach (TableModel table in tablesJson)
                 {
                     pbTables.Value++;
-                    if (table.AutoCreate == false)
+                    if (!table.AutoCreate && !autoCreate)
                         continue;
 
                     string name = (InfosAddon.CustomInfo.Prefix_name + table.Name).ToUpper();

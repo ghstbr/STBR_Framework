@@ -6,11 +6,11 @@ using RE = STBR_Framework.InternalSystem.Forms.FormsFiles;
 
 namespace STBR_Framework.InternalSystem.Menu
 {
-    [ST_Menu("mnuEventsView", "menu eventos")]
-    [ST_Menu("mnuVorazTables", "")]
-    [ST_Menu("mnuInfoAddon", "")]
-    [ST_Menu("mnuVorazBaseDados", "")]
-    internal class MenuFramework : ST_MenuBase
+    [ST_MenuInternal("EventsView", "menu eventos")]
+    [ST_MenuInternal("Tables", "")]
+    [ST_MenuInternal("InfoAddon", "")]
+    [ST_MenuInternal("BaseDados", "")]
+    internal class MenuFramework : ST_MenuBaseInternal
     {
         private string _icone = string.Empty;
 
@@ -18,53 +18,49 @@ namespace STBR_Framework.InternalSystem.Menu
         {
 
 #if DEBUG
-            ME.Add("4864", "Ferramentas Stbr", "mnuStbrFerramentas", 99, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
+            ME.Add("4864", "Ferramentas STBR", ST_Menus.GetMenuID("Ferramentas"), 99, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
 
-            ME.Add("mnuStbrFerramentas", "Infos Addon", "mnuInfoAddon", 99, SAPbouiCOM.BoMenuType.mt_STRING);
+            ME.Add(ST_Menus.GetMenuID("Ferramentas"), "Infos Addon", ST_Menus.GetMenuID("InfoAddon"), 99, SAPbouiCOM.BoMenuType.mt_STRING);
 
-            ME.Add("mnuStbrFerramentas", "Geradores Layouts", "mnuStbrLayouts", 99, SAPbouiCOM.BoMenuType.mt_POPUP);
-            ME.Add("mnuStbrLayouts", "Gerar Tabelas de usuários", "mnuStbrTables", 99, SAPbouiCOM.BoMenuType.mt_STRING);
+            ME.Add(ST_Menus.GetMenuID("Ferramentas"), "Geradores Layouts", ST_Menus.GetMenuID("Layouts"), 99, SAPbouiCOM.BoMenuType.mt_POPUP);
+            ME.Add(ST_Menus.GetMenuID("Layouts"), "Gerar Tabelas de usuários", ST_Menus.GetMenuID("Tables"), 99, SAPbouiCOM.BoMenuType.mt_STRING);
 
-            ME.Add("mnuStbrFerramentas", "Visualizar Eventos - Desligado", "mnuEventsView", 99, SAPbouiCOM.BoMenuType.mt_STRING);
+            ME.Add(ST_Menus.GetMenuID("Ferramentas"), "Visualizar Eventos - Desligado", ST_Menus.GetMenuID("EventsView"), 99, SAPbouiCOM.BoMenuType.mt_STRING);
 
 
 #endif
 
-            ME.Add("4864", "Stbr Gerenciar Addon", "mnuStbrGerenciarAddon", 99, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
-            ME.Add("mnuStbrGerenciarAddon", "Base de Dados", "mnuStbrBaseDados", 99, SAPbouiCOM.BoMenuType.mt_STRING);
+            ME.Add("43523", "Administrador Addons STBR", ST_Menus.GetMenuID("AdmAddonStbr"), 4, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
+            ME.Add(ST_Menus.GetMenuID("AdmAddonStbr"), "Base de Dados", ST_Menus.GetMenuID("BaseDados"), 99, SAPbouiCOM.BoMenuType.mt_STRING);
 
         }
 
 
         public override void MenuClick_After(ref MenuEvent pVal, ref bool bubbleEvent)
         {
-            switch (pVal.MenuUID)
+            string menuUID = pVal.MenuUID;
+            if (menuUID == ST_Menus.GetMenuID("InfoAddon"))
+                ST_Forms.OpenUserForm("frmInfo", RE.frmInfo);
+            else if (menuUID == ST_Menus.GetMenuID("Tables"))
+                ST_Forms.OpenUserForm("frmTableFields", RE.frmTableFields);
+            else if (menuUID == ST_Menus.GetMenuID("EventsView"))
             {
-                case "mnuVorazTables":
-                    ST_Forms.OpenUserForm("frmVorazTables", RE.frmTableFields);
-                    break;
-                case "mnuEventsView":
-                    if (ST_B1AppDomain.Application.Menus.Item("mnuEventsView").String == "Visualizar Eventos - Desligado")
-                    {
-                        ST_B1AppDomain.Application.Menus.Item("mnuEventsView").String = "Visualizar Eventos - Ligado";
-                        ST_B1AppDomain.EventsView = true;
-                    }
-                    else
-                    {
-                        ST_B1AppDomain.Application.Menus.Item("mnuEventsView").String = "Visualizar Eventos - Desligado";
-                        ST_B1AppDomain.EventsView = false;
-                    }
-
-                    break;
-
-                case "mnuInfoAddon":
-                    ST_Forms.OpenUserForm("frmInfo", RE.frmInfo);
-                    break;
-
-                case "mnuVorazBaseDados":
-                    ST_Forms.OpenUserForm("frmBaseDados", RE.frmBaseDados);
-                    break;
+                if (ST_B1AppDomain.Application.Menus.Item(ST_Menus.GetMenuID("EventsView")).String == "Visualizar Eventos - Desligado")
+                {
+                    ST_B1AppDomain.Application.Menus.Item(ST_Menus.GetMenuID("EventsView")).String = "Visualizar Eventos - Ligado";
+                    ST_B1AppDomain.EventsView = true;
+                }
+                else
+                {
+                    ST_B1AppDomain.Application.Menus.Item(ST_Menus.GetMenuID("EventsView")).String = "Visualizar Eventos - Desligado";
+                    ST_B1AppDomain.EventsView = false;
+                }
             }
+            else if (menuUID == ST_Menus.GetMenuID("BaseDados"))
+                ST_Forms.OpenUserForm("frmBaseDados", RE.frmBaseDados);
+
+
+
         }
 
     }

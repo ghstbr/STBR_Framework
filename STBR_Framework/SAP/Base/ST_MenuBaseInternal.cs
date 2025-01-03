@@ -8,25 +8,25 @@ namespace STBR_Framework
     /// <summary>
     /// Base para criacao de Menus. Deve ser herdada em outra classe
     /// </summary>
-    public abstract class ST_MenuBase
+    public abstract class ST_MenuBaseInternal
     {
         internal readonly List<string> menuUid;
 
 
-        protected ST_MenuBase()
+        protected ST_MenuBaseInternal()
         {
             this.menuUid = new List<string>();
-            ST_MenuAttribute attribute = null;
+            ST_MenuInternalAttribute attribute = null;
             int index = 0;
             foreach (object obj2 in base.GetType().GetCustomAttributes(false))
             {
-                if (obj2 is ST_MenuAttribute)
+                if (obj2 is ST_MenuInternalAttribute)
                 {
-                    attribute = obj2 as ST_MenuAttribute;
+                    attribute = obj2 as ST_MenuInternalAttribute;
 
                     this.menuUid.Add(attribute.menuUid);
-                    if (!ST_B1AppDomain.DictionaryMenuEvent.ContainsKey(attribute.menuUid))
-                        ST_B1AppDomain.RegisterMenuByType(this.menuUid.SingleOrDefault(e => e == attribute.menuUid), this);
+
+                    ST_B1AppDomain.RegisterMenuInternalByType(this.menuUid.SingleOrDefault(e => e == attribute.menuUid), this);
 
                     index++;
                 }
@@ -41,11 +41,9 @@ namespace STBR_Framework
 
 
             this.OnInitializeFormEvents();
-            this.OnInitializeMenu();
+
 
         }
-
-        public virtual void OnInitializeMenu() { }
 
         private void OnInitializeFormEvents()
         {

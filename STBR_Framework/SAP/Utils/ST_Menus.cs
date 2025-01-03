@@ -19,7 +19,7 @@ namespace STBR_Framework.Utils
         /// <param name="type">tipo...</param>
         /// <param name="imagePath">caminho para o arquivo de imagem a ser utilizado como icone no menu</param>
         /// <param name="remove"></param>
-        internal static void Add(
+        public static void Add(
             string mnuItemB1ID,
             string mnuItemDescr,
             string mnuItemID,
@@ -77,7 +77,7 @@ namespace STBR_Framework.Utils
         }
 
 
-        internal static void AddContext(string uniqueId, string description, int position)
+        public static void AddContext(string uniqueId, string description, int position)
         {
             SAPbouiCOM.MenuItem oMenuItem = null;
             SAPbouiCOM.Menus oMenus = null;
@@ -106,7 +106,7 @@ namespace STBR_Framework.Utils
             }
         }
 
-        internal static void RemoveContext(string uniqueId)
+        public static void RemoveContext(string uniqueId)
         {
             try
             {

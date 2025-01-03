@@ -1,4 +1,5 @@
 ﻿using SAPbouiCOM;
+using STBR_Framework.Utils;
 using System;
 
 namespace STBR_Framework
@@ -48,10 +49,6 @@ namespace STBR_Framework
         private static RightClickEventHandler _RightClick_After;
         #endregion
 
-        #region FormLoad Fields
-        //private static FormLoadedEventHandler _FormLoadedEvent;
-        #endregion
-
         #region Application Fields
 
         private static AppEventHandler _AppCompanyChanged;
@@ -92,6 +89,7 @@ namespace STBR_Framework
         private static ReportDataEventHandler _Print_Data_After;
 
         #endregion
+
 
         //events
         #region Menu Events
@@ -189,6 +187,7 @@ namespace STBR_Framework
 
         #endregion
 
+
         //methods
         #region Captura Menu Events
         public static void CatchMenuEvent(ref MenuEvent pVal, out bool bubbleEvent)
@@ -197,6 +196,10 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Menu Evento: MenuClick " +
+                        " || Before: " + pVal.BeforeAction + " Id: " + pVal.MenuUID);
+
                 if (pVal.BeforeAction)
                 {
                     if (MenuClick_Before != null)
@@ -222,11 +225,17 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Item Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction + " || Form: " + pVal.FormTypeEx);
+
+
                 if (pVal != null)
                 {
 
                     switch (pVal.EventType)
                     {
+                        
                         case BoEventTypes.et_ITEM_PRESSED:
                             if (pVal.BeforeAction)
                             {
@@ -451,6 +460,9 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Progress Bar Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction);
 
                 if (pVal != null)
                 {
@@ -515,6 +527,10 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Right Click Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction);
+
                 if (pVal.BeforeAction)
                 {
                     if (RightClick_Before != null)
@@ -539,6 +555,9 @@ namespace STBR_Framework
             bubbleEvent = true;
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("UDO Evento: " + pVal.EventType);
+
                 switch (pVal.EventType)
                 {
                     case BoEventTypes.et_UDO_FORM_OPEN:
@@ -565,6 +584,10 @@ namespace STBR_Framework
             bubbleEvent = true;
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Form Data Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction);
+
                 switch (pVal.EventType)
                 {
                     case BoEventTypes.et_FORM_DATA_ADD:
@@ -633,6 +656,9 @@ namespace STBR_Framework
         {
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("App Evento: " + pVal);
+
                 switch (pVal)
                 {
                     case BoAppEventTypes.aet_CompanyChanged:
@@ -676,6 +702,10 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Report Data Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction);
+
                 if (pVal != null)
                 {
                     switch (pVal.EventType)
@@ -711,6 +741,10 @@ namespace STBR_Framework
 
             try
             {
+                if (ST_B1AppDomain.EventsView)
+                    ST_Mensagens.StatusBar("Print Evento: " + pVal.EventType +
+                        " || Before: " + pVal.BeforeAction);
+
                 if (pVal != null)
                 {
 
@@ -753,19 +787,21 @@ namespace STBR_Framework
                 ST_B1Exception.throwException("Erro evento Print: ", ex);
             }
         }
+
+
         #endregion
 
+        
+
         //delegates
-        public delegate void MenuEventHandler(ref SAPbouiCOM.MenuEvent pVal, ref bool bubbleEvent);
+        public delegate void MenuEventHandler(ref MenuEvent pVal, ref bool bubbleEvent);
         public delegate void ItemEventHandler(string formUID, ref ItemEvent pVal, ref bool bubbleEvent);
         public delegate void ProgressBarEventHandler(ref ProgressBarEvent pVal, ref bool bubbleEvent);
-        //public delegate void FormLoadedEventHandler(string formUID, string formTypeEX, object pVal, ref bool bubbleEvent);
         public delegate void RightClickEventHandler(ref ContextMenuInfo pVal, ref bool bubbleEvent);
         public delegate void FormDataEventHandler(ref BusinessObjectInfo pVal, ref bool bubbleEvent);
         public delegate void UdoEventHandler(ref UDOEvent pVal, ref bool bubbleEvent);
         public delegate void AppEventHandler(ref BoAppEventTypes pVal);
         public delegate void PrintEventHandler(ref PrintEventInfo pVal, ref bool bubbleEvent);
         public delegate void ReportDataEventHandler(ref ReportDataInfo pVal, ref bool bubbleEvent);
-
     }
 }

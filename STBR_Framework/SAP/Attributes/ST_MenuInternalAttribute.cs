@@ -7,12 +7,12 @@ namespace STBR_Framework.Attributes
     /// Atributo para informar quais menus tratar
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-    public sealed class ST_MenuAttribute : Attribute
+    public sealed class ST_MenuInternalAttribute : Attribute
     {
         public string menuUid;
         public string description;
 
-        public ST_MenuAttribute(string menuUid, string description)
+        public ST_MenuInternalAttribute(string menuUid, string description)
         {
             this.menuUid = ST_Menus.GetMenuID(menuUid);
             this.description = description;
