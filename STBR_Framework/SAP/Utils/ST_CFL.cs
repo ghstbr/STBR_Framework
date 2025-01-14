@@ -17,6 +17,8 @@ namespace STBR_Framework.Utils
                 ChooseFromList oCFL = oForm.ChooseFromLists.Item(idChooseFromList);
                 DataTable oDataTable = oCFLEvento.SelectedObjects;
                 ((EditText)oForm.Items.Item(idCampoChoose).Specific).Value = oDataTable.GetValue(0, 0).ToString();
+                
+                
             }
             catch (Exception ex)
             {

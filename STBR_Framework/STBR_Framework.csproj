@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -68,6 +80,8 @@
     <Compile Include="InternalSystem\Forms\frmUdo.cs" />
     <Compile Include="InternalSystem\Forms\frmWeb.cs" />
     <Compile Include="InternalSystem\Menu\MenuFramework.cs" />
+    <Compile Include="InternalSystem\Models\ST_CF.cs" />
+    <Compile Include="InternalSystem\Models\ST_Products.cs" />
     <Compile Include="InternalSystem\Services\frmBaseDados_service.cs" />
     <Compile Include="InternalSystem\Services\frmTableFields_service.cs" />
     <Compile Include="InternalSystem\Services\InitForms_service.cs" />
@@ -129,10 +143,13 @@
     <Compile Include="SAP\Services\Tables_service.cs" />
     <Compile Include="SAP\Services\Udos_service.cs" />
     <Compile Include="SAP\Utils\ST_CFL.cs" />
+    <Compile Include="SAP\Utils\ST_Config.cs" />
     <Compile Include="SAP\Utils\ST_Forms.cs" />
     <Compile Include="SAP\Utils\ST_Mensagens.cs" />
     <Compile Include="SAP\Utils\ST_Menus.cs" />
     <Compile Include="SAP\Utils\ST_ODBC.cs" />
+    <Compile Include="SAP\Utils\ST_RegProducts.cs" />
+    <Compile Include="SAP\Utils\ST_Reports.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,11 +172,18 @@
     <Content Include="InternalSystem\Forms\frmUdo.srf" />
     <Content Include="InternalSystem\Forms\frmWeb.srf" />
     <Content Include="Queries\hana\cufdList.sql" />
+    <Content Include="Queries\hana\getAllProducts.sql" />
+    <Content Include="Queries\hana\getConfig.sql" />
     <Content Include="Queries\hana\getFieldID.sql" />
     <Content Include="Queries\hana\getFieldsTable.sql" />
+    <Content Include="Queries\hana\getProduct.sql" />
+    <Content Include="Queries\hana\insertConfig.sql" />
+    <Content Include="Queries\hana\insertProducts.sql" />
     <Content Include="Queries\hana\outbList.sql" />
     <Content Include="Queries\hana\udoList.sql" />
     <Content Include="Queries\hana\ufd1List.sql" />
+    <Content Include="Queries\hana\updateConfig.sql" />
+    <Content Include="Queries\hana\updateProducts.sql" />
     <Content Include="Queries\sql\cufdList.sql" />
     <Content Include="Queries\sql\getFieldID.sql" />
     <Content Include="Queries\sql\outbList.sql" />

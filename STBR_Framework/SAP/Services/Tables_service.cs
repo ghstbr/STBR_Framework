@@ -185,7 +185,7 @@ namespace STBR_Framework.SAP.Services
             }
         }
 
-        internal void ProcessTableClass()
+        internal void ProcessTableClass(bool autoCreate = false)
         {
             ST_Mensagens.StatusBarWarning("Atualizando tabelas por Classe... :: " + DateTime.Now.ToString("HH:mm:ss"));
             ProgressBar pbTablesClass = ST_B1AppDomain.Application.StatusBar.CreateProgressBar("Aguarde... Atualizando Tabelas Classes", ST_B1AppDomain.DictionaryTablesFields.Count, false);
@@ -195,18 +195,18 @@ namespace STBR_Framework.SAP.Services
 
                 foreach (KeyValuePair<object, TableModel> table in ST_B1AppDomain.DictionaryTablesFields.Where(x => x.Value.TableType == TableType.User))
                 {
-                    if (table.Value.AutoCreate == false)
+                    if (!table.Value.AutoCreate && !autoCreate)
                         continue;
 
                     pbTablesClass.Value++;
                     pbTablesClass.Text = table.Value.Name;
-                    if (_userTables.Where(x => x.TableName == table.Value.Name).Count() <= 0)
+                    if (_userTables.Where(x => x.TableName == table.Value.Name.ST_GetNameTable()).Count() <= 0)
                     {
                         AddTable(table.Value);
                     }
                     else
                     {
-                        OUTBModel tb = _userTables.Where(x => x.TableName == table.Value.Name).SingleOrDefault();
+                        OUTBModel tb = _userTables.Where(x => x.TableName == table.Value.Name.ST_GetNameTable()).SingleOrDefault();
 
                         if (tb.Descr != table.Value.Description)
                         {

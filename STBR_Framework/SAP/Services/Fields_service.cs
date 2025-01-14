@@ -75,13 +75,13 @@ namespace STBR_Framework.SAP.Services
             }
         }
 
-        internal void ProcessFieldsClass()
+        internal void ProcessFieldsClass(bool autoCreate = false)
         {
             try
             {
                 foreach (KeyValuePair<object, TableModel> table in ST_B1AppDomain.DictionaryTablesFields)
                 {
-                    if (table.Value.AutoCreate)
+                    if (table.Value.AutoCreate || autoCreate)
                     {
                         List<FieldModel> fields = table.Value.Fields;
                         Dictionary<int, string> fieldsSap = GetFieldsSap(table.Value.Name.ST_GetNameTable());
@@ -96,6 +96,9 @@ namespace STBR_Framework.SAP.Services
                                 AddFields(field, table.Value);
                             }
                         }
+
+                        pbFields.Stop();
+                        pbFields.ST_ClearMemory();
                     }
                 }
             }

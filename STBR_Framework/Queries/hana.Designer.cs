@@ -87,6 +87,27 @@ namespace STBR_Framework.Queries {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT &quot;Code&quot;, &quot;Name&quot;, &quot;U_Description&quot;, &quot;U_Key&quot;, &quot;U_Active&quot;, &quot;U_Version&quot;, &quot;U_Msg&quot;
+        ///FROM &quot;@ST_PRODUCTS&quot;.
+        /// </summary>
+        internal static string getAllProducts {
+            get {
+                return ResourceManager.GetString("getAllProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT &quot;Code&quot;, &quot;Name&quot;, &quot;U_UserDB&quot;, &quot;U_PasswdDB&quot;, &quot;U_Port&quot;, &quot;U_LicenseUrl&quot;, &quot;U_HardwareKey&quot;, &quot;U_ClientId&quot;
+        ///FROM &quot;@ST_CF&quot;
+        ///WHERE &quot;Code&quot;=&apos;0&apos;;.
+        /// </summary>
+        internal static string getConfig {
+            get {
+                return ResourceManager.GetString("getConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select &quot;FieldID&quot; from CUFD where &quot;AliasID&quot; = &apos;{0}&apos; and &quot;TableID&quot; = &apos;{1}&apos;.
         /// </summary>
         internal static string getFieldID {
@@ -101,6 +122,39 @@ namespace STBR_Framework.Queries {
         internal static string getFieldsTable {
             get {
                 return ResourceManager.GetString("getFieldsTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT &quot;Code&quot;, &quot;Name&quot;, &quot;U_Description&quot;, &quot;U_Key&quot;, &quot;U_Active&quot;, &quot;U_Version&quot;, &quot;U_Msg&quot;
+        ///FROM &quot;@ST_PRODUCTS&quot;
+        ///WHERE &quot;Code&quot; = &apos;#Code&apos;.
+        /// </summary>
+        internal static string getProduct {
+            get {
+                return ResourceManager.GetString("getProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO &quot;@ST_CF&quot;
+        ///(&quot;Code&quot;, &quot;Name&quot;, &quot;U_UserDB&quot;, &quot;U_PasswdDB&quot;, &quot;U_Port&quot;, &quot;U_LicenseUrl&quot;, &quot;U_HardwareKey&quot;, &quot;U_ClientId&quot;)
+        ///VALUES(&apos;0&apos;, &apos;0&apos;, &apos;#UserDB&apos;, &apos;#PasswdDB&apos;, &apos;#Port&apos;, &apos;#LicenseUrl&apos;, &apos;#HardwareKey&apos;, &apos;#ClientId&apos;);.
+        /// </summary>
+        internal static string insertConfig {
+            get {
+                return ResourceManager.GetString("insertConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO &quot;@ST_PRODUCTS&quot;
+        ///(&quot;Code&quot;, &quot;Name&quot;, &quot;U_Description&quot;, &quot;U_Key&quot;, &quot;U_Active&quot;, &quot;U_Version&quot;, &quot;U_Msg&quot;)
+        ///VALUES(&apos;#Code&apos;, &apos;#Name&apos;, &apos;#Description&apos;, &apos;#Key&apos;, &apos;#Active&apos;, &apos;#Version&apos;, &apos;#Msg&apos;);.
+        /// </summary>
+        internal static string insertProducts {
+            get {
+                return ResourceManager.GetString("insertProducts", resourceCulture);
             }
         }
         
@@ -145,6 +199,33 @@ namespace STBR_Framework.Queries {
         internal static string ufd1List {
             get {
                 return ResourceManager.GetString("ufd1List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE &quot;@ST_CF&quot;
+        ///SET &quot;U_UserDB&quot;=&apos;#UserDB&apos;, 
+        ///    &quot;U_PasswdDB&quot;=&apos;#PasswdDB&apos;, 
+        ///    &quot;U_Port&quot;=&apos;#Port&apos;, 
+        ///    &quot;U_LicenseUrl&quot;=&apos;#LicenseUrl&apos;, 
+        ///    &quot;U_HardwareKey&quot;=&apos;#HardwareKey&apos;,
+        ///    &quot;U_ClientId&quot; = &apos;#ClientId&apos;
+        ///WHERE &quot;Code&quot;=&apos;0&apos;;.
+        /// </summary>
+        internal static string updateConfig {
+            get {
+                return ResourceManager.GetString("updateConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE &quot;@ST_PRODUCTS&quot;
+        ///SET &quot;U_Description&quot;=&apos;#Description&apos;, &quot;U_Key&quot;=&apos;#Key&apos;, &quot;U_Active&quot;=&apos;#Active&apos;, &quot;U_Version&quot;=&apos;#Version&apos;, &quot;U_Msg&quot;=&apos;#Msg&apos;
+        ///WHERE &quot;Code&quot;=&apos;#Code&apos;;.
+        /// </summary>
+        internal static string updateProducts {
+            get {
+                return ResourceManager.GetString("updateProducts", resourceCulture);
             }
         }
     }

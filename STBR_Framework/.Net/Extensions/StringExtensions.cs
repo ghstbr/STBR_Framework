@@ -40,6 +40,14 @@ namespace STBR_Framework
 
         }
 
+        public static string ST_ConvertFileStreamToString(this FileStream stream)
+        {
+            byte[] fileBytes = new byte[stream.Length];
+            stream.Read(fileBytes, 0, fileBytes.Length);
+            stream.Close();
+            return Convert.ToBase64String(fileBytes);
+        }
+
         /// <summary>
         /// Converte a string base 64 para byte[]
         /// </summary>

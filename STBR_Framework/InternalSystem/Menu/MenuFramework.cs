@@ -29,9 +29,15 @@ namespace STBR_Framework.InternalSystem.Menu
 
 
 #endif
+            if (!ST_B1AppDomain.Application.Menus.Exists(ST_Menus.GetMenuID("AdmAddonStbr")))
+                ME.Add("43523", "STBR Administrador Addons", ST_Menus.GetMenuID("AdmAddonStbr"), 4, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
 
-            ME.Add("43523", "Administrador Addons STBR", ST_Menus.GetMenuID("AdmAddonStbr"), 4, SAPbouiCOM.BoMenuType.mt_POPUP, _icone);
+
+
+#if DEBUG
             ME.Add(ST_Menus.GetMenuID("AdmAddonStbr"), "Base de Dados", ST_Menus.GetMenuID("BaseDados"), 99, SAPbouiCOM.BoMenuType.mt_STRING);
+
+#endif
 
         }
 

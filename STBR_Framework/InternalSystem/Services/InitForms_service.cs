@@ -1,5 +1,6 @@
 ﻿using STBR_Framework.Default.forms;
 using STBR_Framework.InternalSystem.forms;
+using STBR_Framework.InternalSystem.Models;
 
 namespace STBR_Framework.InternalSystem.Services
 {
@@ -14,6 +15,8 @@ namespace STBR_Framework.InternalSystem.Services
             new frmBaseDados();
             new frmWeb();
             new frmUdo();
+            new ST_CF();
+            new ST_Products();
         }
     }
 }

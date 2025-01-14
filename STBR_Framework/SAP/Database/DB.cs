@@ -29,7 +29,7 @@ namespace STBR_Framework.SAP.Database
             tablesService.ProcessTableJson(true);
             log.Value += "\r\nTabelas json atualizadas...";
             log.Value += "\r\nIniciando atualização tablas classes...";
-            tablesService.ProcessTableClass();
+            tablesService.ProcessTableClass(true);
             log.Value += "\r\nTabelas classes atualizadas...";
 
             //processa campos json
@@ -38,7 +38,7 @@ namespace STBR_Framework.SAP.Database
             fieldsService.ProcessFieldsJson(true);
             log.Value += "\r\nCampos json atualizados... ";
             log.Value += "\r\nIniciando atualização campos classes... ";
-            fieldsService.ProcessFieldsClass();
+            fieldsService.ProcessFieldsClass(true);
             log.Value += "\r\nCampos classes atualizados... ";
 
 

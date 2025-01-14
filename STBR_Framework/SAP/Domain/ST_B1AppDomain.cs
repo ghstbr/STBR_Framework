@@ -148,7 +148,10 @@ namespace STBR_Framework
                         if (type.CustomAttributes.Where(e => e.AttributeType == typeof(ST_MenuAttribute)).Count() > 0)
                             Activator.CreateInstance(type);
 
-                        
+                        //verifica se a classe possui o atributo de tabela
+                        if (type.CustomAttributes.Where(e => e.AttributeType == typeof(ST_TablesAttribute)).Count() > 0)
+                            Activator.CreateInstance(type);
+
 
                     }
                     catch { }

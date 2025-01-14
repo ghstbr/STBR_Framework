@@ -12,9 +12,13 @@ namespace STBR_Framework.Attributes
         public string menuUid;
         public string description;
 
-        public ST_MenuAttribute(string menuUid, string description)
+        public ST_MenuAttribute(string menuUid, string description, bool system = false)
         {
-            this.menuUid = ST_Menus.GetMenuID(menuUid);
+            if (!system)
+                this.menuUid = ST_Menus.GetMenuID(menuUid);
+            else
+                this.menuUid = menuUid;
+
             this.description = description;
         }
     }

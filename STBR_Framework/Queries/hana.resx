@@ -121,11 +121,26 @@
   <data name="cufdList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hana\cufdList.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="getAllProducts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\getAllProducts.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="getConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\getConfig.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="getFieldID" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hana\getFieldID.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="getFieldsTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hana\getFieldsTable.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="getProduct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\getProduct.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="insertConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\insertConfig.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="insertProducts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\insertProducts.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="outbList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hana\outbList.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -135,5 +150,11 @@
   </data>
   <data name="ufd1List" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>hana\ufd1List.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="updateConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\updateConfig.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="updateProducts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>hana\updateProducts.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
