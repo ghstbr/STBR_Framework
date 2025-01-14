@@ -95,6 +95,60 @@ namespace STBR_Framework.SAP.Utils
             }
         }
 
+        public static void conexaoCrystal32(ref ReportDocument rptDoc, string userDB, string passwdDB, string portDB)
+        {
+            string server = ST_B1AppDomain.Company.Server.ToString().Replace(":30013", ":" + portDB);
+            string[] srvfinal = server.Split('@');
+            try
+            {
+                ConnectionInfo connectionInfo = new ConnectionInfo();
+
+                connectionInfo.DatabaseName = ST_B1AppDomain.Company.CompanyDB;
+                connectionInfo.UserID = userDB;
+                connectionInfo.Password = passwdDB;
+
+
+                connectionInfo.ServerName = srvfinal[1].ToString();
+
+                // Aplique as informações de logon a cada tabela no relatório
+                foreach (Table table in rptDoc.Database.Tables)
+                {
+                    TableLogOnInfo tableLogOnInfo = table.LogOnInfo;
+                    tableLogOnInfo.ConnectionInfo = connectionInfo;
+                    table.ApplyLogOnInfo(tableLogOnInfo);
+                }
+
+                rptDoc.VerifyDatabase();
+            }
+            catch
+            {
+
+                string strConnection = string.Format("DRIVER={0};UID={1};PWD={2};SERVERNODE={3};DATABASE={4};CS={4}",
+                    "{HDBODBC32}", userDB, passwdDB, srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB);
+
+
+                NameValuePairs2 logonProps2 = rptDoc.DataSourceConnections[0].LogonProperties;
+
+                logonProps2.Set("Provider", "{HDBODBC32}");
+                logonProps2.Set("Server Type", "{HDBODBC32}");
+                logonProps2.Set("Connection String", strConnection);
+                logonProps2.Set("Locale Identifier", "1033");
+
+                rptDoc.DataSourceConnections.Clear();
+                for (int i = 0; i < rptDoc.DataSourceConnections[0].LogonProperties.Count; i++)
+                {
+                    rptDoc.DataSourceConnections[0].LogonProperties.RemoveAt(i);
+                }
+
+                rptDoc.DataSourceConnections[0].SetLogonProperties(logonProps2);
+                rptDoc.DataSourceConnections[0].SetConnection(srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
+                rptDoc.Refresh();
+                rptDoc.SetDatabaseLogon(userDB, passwdDB, srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
+
+                rptDoc.VerifyDatabase();
+            }
+        }
+
         public static void conexaoCrystal64(ref ReportDocument rptDoc)
         {
             string server = ST_B1AppDomain.Company.Server.ToString().Replace(":30013", ":30015");
@@ -144,6 +198,60 @@ namespace STBR_Framework.SAP.Utils
                 rptDoc.DataSourceConnections[0].SetConnection(srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
                 rptDoc.Refresh();
                 rptDoc.SetDatabaseLogon(ST_B1AppDomain.UserDB, ST_B1AppDomain.PasswdDB, srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
+
+                rptDoc.VerifyDatabase();
+            }
+        }
+
+        public static void conexaoCrystal64(ref ReportDocument rptDoc, string userDB, string passwdDB, string portDB)
+        {
+            string server = ST_B1AppDomain.Company.Server.ToString().Replace(":30013", ":" + portDB);
+            string[] srvfinal = server.Split('@');
+            try
+            {
+                ConnectionInfo connectionInfo = new ConnectionInfo();
+
+                connectionInfo.DatabaseName = ST_B1AppDomain.Company.CompanyDB;
+                connectionInfo.UserID = userDB;
+                connectionInfo.Password = passwdDB;
+
+
+                connectionInfo.ServerName = srvfinal[1].ToString();
+
+                // Aplique as informações de logon a cada tabela no relatório
+                foreach (Table table in rptDoc.Database.Tables)
+                {
+                    TableLogOnInfo tableLogOnInfo = table.LogOnInfo;
+                    tableLogOnInfo.ConnectionInfo = connectionInfo;
+                    table.ApplyLogOnInfo(tableLogOnInfo);
+                }
+
+                rptDoc.VerifyDatabase();
+            }
+            catch
+            {
+
+                string strConnection = string.Format("DRIVER={0};UID={1};PWD={2};SERVERNODE={3};DATABASE={4};CS={4}",
+                    "{HDBODBC}", userDB, passwdDB, srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB);
+
+
+                NameValuePairs2 logonProps2 = rptDoc.DataSourceConnections[0].LogonProperties;
+
+                logonProps2.Set("Provider", "{HDBODBC}");
+                logonProps2.Set("Server Type", "{HDBODBC}");
+                logonProps2.Set("Connection String", strConnection);
+                logonProps2.Set("Locale Identifier", "1033");
+
+                rptDoc.DataSourceConnections.Clear();
+                for (int i = 0; i < rptDoc.DataSourceConnections[0].LogonProperties.Count; i++)
+                {
+                    rptDoc.DataSourceConnections[0].LogonProperties.RemoveAt(i);
+                }
+
+                rptDoc.DataSourceConnections[0].SetLogonProperties(logonProps2);
+                rptDoc.DataSourceConnections[0].SetConnection(srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
+                rptDoc.Refresh();
+                rptDoc.SetDatabaseLogon(userDB, passwdDB, srvfinal[1].ToString(), ST_B1AppDomain.Company.CompanyDB, false);
 
                 rptDoc.VerifyDatabase();
             }
