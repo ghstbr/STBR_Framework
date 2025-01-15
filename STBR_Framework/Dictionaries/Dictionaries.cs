@@ -55,5 +55,28 @@ namespace STBR_Framework
 
             return dictionary;
         }
+
+        public static Dictionary<int, string> GetDictionary_ObjectTypes_TableImp()
+        {
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            
+
+            
+            
+            dictionary.Add(13, "INV2");
+            dictionary.Add(14, "RIN2");
+            dictionary.Add(15, "DLN2");
+            dictionary.Add(16, "RDN2");
+            dictionary.Add(17, "RDR2");
+            dictionary.Add(18, "PCH2");
+            dictionary.Add(19, "RPC2");
+            dictionary.Add(20, "IGN2");
+            dictionary.Add(21, "RDN2");
+            dictionary.Add(22, "POR2");
+
+
+
+            return dictionary;
+        }
     }
 }
