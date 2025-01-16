@@ -36,6 +36,7 @@ namespace STBR_Framework.Utils
                 ChooseFromList oCFL = oForm.ChooseFromLists.Item(idChooseFromList);
                 DataTable oDataTable = oCFLEvento.SelectedObjects;
                 ((EditText)oForm.Items.Item(idCampoChoose).Specific).Value = oDataTable.GetValue(0, 0).ToString();
+
             }
             catch (Exception ex)
             {
@@ -43,6 +44,24 @@ namespace STBR_Framework.Utils
             }
         }
 
+        public static void PopularCampos(string formId, ItemEvent pVal, string idCampoChoose, string idCampoDescricao)
+        {
+            try
+            {
+                Form oForm = ST_B1AppDomain.Application.Forms.Item(formId);
+                IChooseFromListEvent oCFLEvento = (IChooseFromListEvent)pVal;
+                string idChooseFromList = oCFLEvento.ChooseFromListUID;
+                ChooseFromList oCFL = oForm.ChooseFromLists.Item(idChooseFromList);
+                DataTable oDataTable = oCFLEvento.SelectedObjects;
+                ((EditText)oForm.Items.Item(idCampoChoose).Specific).Value = oDataTable.GetValue(0, 0).ToString();
+                ((EditText)oForm.Items.Item(idCampoDescricao).Specific).Value = oDataTable.GetValue(1, 0).ToString();
+
+            }
+            catch (Exception ex)
+            {
+                //ST_B1Exception.throwException("PopularCampos :: ", ex);
+            }
+        }
 
 
         /// <summary>
